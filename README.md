@@ -11,7 +11,7 @@ A SUB file is a MicroDVD subtitle file. It looks something like this:
 
 
 <p>
-The first line of the file is reserved for telling the media player how many frames per second, FPS, is displayed in the video. Sometimes, like in this case, the number is wrong; Merry Christmas Mr. Lawrence (1983) actually runs at 23.98 frames per second, so when the subtitle is uploaded and the above FPS field is populated by the FPS, you can then change it. By inspecting file properties you can usually find out what the framerate in your movie file is.
+The first line of the file is reserved for telling the media player how many frames per second, FPS, is displayed in the video. Sometimes, like in this case, the number is wrong; Merry Christmas Mr. Lawrence (1983) actually runs at 23.98 frames per second, so when the subtitle is uploaded and the converter's FPS field is populated by the FPS, you can then change it. By inspecting file properties you can usually find out what the framerate in your movie file is.
 </p>
 
 <p>
