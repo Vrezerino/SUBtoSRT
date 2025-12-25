@@ -1,13 +1,14 @@
-<h1>SUB to SRT Converter</h1>
+# SUB to SRT Converter
 
 A SUB file is a MicroDVD subtitle file. It looks something like this:
 
-        {1}{1}25.000
-        {950}{1033}- What does he want?|- I'll find out.
-        {1056}{1154}You don't have to take orders|from this man, you know.
-        {1157}{1216}Well, I'm the liaison officer.|So I'm liaising.
-
-        ...
+```
+{1}{1}25.000
+{950}{1033}- What does he want?|- I'll find out.
+{1056}{1154}You don't have to take orders|from this man, you know.
+{1157}{1216}Well, I'm the liaison officer.|So I'm liaising.
+...
+```
 
 
 <p>
