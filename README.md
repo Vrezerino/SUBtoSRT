@@ -1,4 +1,4 @@
-#SUB to SRT Converter
+<h1>SUB to SRT Converter</h1>
 
 A SUB file is a MicroDVD subtitle file. It looks something like this:
 
