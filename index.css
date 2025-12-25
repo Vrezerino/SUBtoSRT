@@ -1,0 +1,118 @@
+a {
+  color: black;
+  text-decoration: underline;
+}
+
+body {
+  padding: 0;
+  margin: 1em;
+  max-width: 450px;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 50px;
+  color: #851b00;
+}
+
+body,
+input,
+.customBtn {
+  font-family: Courier, monospace;
+}
+
+span#fileName {
+  font-size: 14px;
+  padding-top: 1em;
+}
+
+fieldset {
+  margin: 2em 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+label {
+  display: inline-block;
+}
+
+label:not([for='fileInput']) {
+  display: block;
+}
+
+input {
+  border-radius: 4px;
+}
+
+input[type='file'] {
+  display: none;
+}
+
+.customBtn {
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #ce3a00;
+  color: white;
+  padding: 4px 9px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease-in-out;
+}
+
+.customBtn:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.customBtn:active {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+  transform: translateY(1px);
+}
+
+.customBtn:focus {
+  outline: 2px solid #ff8a00;
+}
+
+.customBtn:hover {
+  background-color: #b33300;
+}
+
+#controls {
+  margin: 4em 0;
+}
+
+#downloadMessage {
+  color: black;
+  font-weight: bold;
+  display: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+aside {
+  margin-top: 5em;
+  font-size: small;
+}
+
+code {
+  white-space: pre-line;
+  background-color: rgb(255, 243, 239);
+}
