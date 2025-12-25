@@ -6,6 +6,9 @@ a {
 body {
   padding: 0;
   margin: 1em;
+}
+
+.mainContainer {
   max-width: 450px;
 }
 
@@ -30,8 +33,7 @@ fieldset {
   margin: 2em 0;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 400px;
+  max-width: 100%;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;

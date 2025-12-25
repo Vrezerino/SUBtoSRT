@@ -4,60 +4,75 @@
 <head>
   <meta charset='UTF-8'>
   <title>SUB to SRT Converter</title>
+  <meta name='description'
+    content='Convert your .sub subtitle files to .srt format easily with our free online tool. No sign-up needed, fast and efficient conversion.'>
+  <meta name='keywords'
+    content='subtitle converter, sub to srt, .sub to .srt, convert subtitle files, online subtitle converter, free subtitle tool'>
+  <script type='application/ld+json'>
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    'name': 'Free Online SUB to SRT Converter – Convert Subtitle Files Quickly',
+    'description': 'Convert your .sub subtitle files to .srt format easily with our free online tool. No sign-up needed, fast and efficient conversion.',
+    'url': 'https://subtosrt.vercel.app'
+  }
+  </script>
+
   <script src='script.js' defer></script>
   <link rel='preload' href='index.css' as='style'>
   <link rel='stylesheet' href='index.css'>
 </head>
 
 <body>
-  <h1>SUB to SRT Converter</h1>
+  <div class='mainContainer'>
+    <h1>SUB to SRT Converter</h1>
 
-  <div>
-    <label for='fileInput' class='customBtn'>Browse...</label>
-    <input type='file' id='fileInput' accept='.sub' aria-labelledby='fileInput' style='display:none;'
-      autofocus /><br /><br />
-
-    <span id='fileName'></span>
-  </div>
-
-  <fieldset>
-    <legend>Optional settings</legend>
-
-    <!-- Shift -->
     <div>
-      <label for='shiftInput'>Shift (ms)</label>
-      <input type='number' id='shiftInput' value='0' step='1' max='30000000' aria-describedby='shiftInfo' />
-      <small id='shiftInfo' class='sr-only'>Enter a positive or negative number to shift the subtitle timing.</small>
+      <label for='fileInput' class='customBtn'>Browse...</label>
+      <input type='file' id='fileInput' accept='.sub' aria-labelledby='fileInput' style='display:none;'
+        autofocus /><br /><br />
+
+      <span id='fileName'></span>
     </div>
 
-    <div style='height: 2em'></div>
+    <fieldset>
+      <legend>Optional settings</legend>
 
-    <!-- FPS input -->
+      <!-- Shift -->
+      <div>
+        <label for='shiftInput'>Shift (ms)</label>
+        <input type='number' id='shiftInput' value='0' step='1' max='30000000' aria-describedby='shiftInfo' />
+        <small id='shiftInfo' class='sr-only'>Enter a positive or negative number to shift the subtitle timing.</small>
+      </div>
+
+      <div style='height: 2em'></div>
+
+      <!-- FPS input -->
+      <div>
+        <label for='fpsInput'>FPS</label>
+        <input type='number' id='fpsInput' step='any' placeholder='Enter FPS' min='1' max='1000'
+          aria-describedby='fpsInfo' />
+        <small id='fpsInfo' class='sr-only'>Leave empty if not needed.</small>
+      </div>
+    </fieldset>
+
+    <!-- Convert btn -->
     <div>
-      <label for='fpsInput'>FPS</label>
-      <input type='number' id='fpsInput' step='any' placeholder='Enter FPS' min='1' max='1000'
-        aria-describedby='fpsInfo' />
-      <small id='fpsInfo' class='sr-only'>Leave empty if not needed.</small>
+      <button onclick='convert()' class='customBtn' aria-live='polite'>Convert to SRT</button>
     </div>
-  </fieldset>
 
-  <!-- Convert btn -->
-  <div>
-    <button onclick='convert()' class='customBtn' aria-live='polite'>Convert to SRT</button>
-  </div>
+    <div id='downloadMessage'>
+      <p>Converted and downloaded!</p>
+    </div>
 
-  <div id='downloadMessage'>
-    <p>Converted and downloaded!</p>
-  </div>
+    <aside>
+      <p>
+        A SUB file is a <a href='https://en.wikipedia.org/wiki/MicroDVD' target='_blank' rel='noreferrer'> MicroDVD</a>
+        subtitle file. It looks something like this:
+      </p>
 
-  <aside>
-    <p>
-      A SUB file is a <a href='https://en.wikipedia.org/wiki/MicroDVD' target='_blank' rel='noreferrer'> MicroDVD</a>
-      subtitle file. It looks something like this:
-    </p>
-
-    <p>
-      <code>
+      <p>
+        <code>
         {1}{1}25.000
         {950}{1033}- What does he want?|- I'll find out.
         {1056}{1154}You don't have to take orders|from this man, you know.
@@ -65,35 +80,36 @@
 
         ...
       </code>
-    </p>
+      </p>
 
-    <p>
-      The first line of the file is reserved for telling the media player how
-      many frames per second, FPS, is displayed in the video. Sometimes, like
-      in this case, the number is wrong; <i>Merry Christmas Mr. Lawrence</i> (1983)
-      actually runs at 23.98 frames per second, so when the subtitle is uploaded and
-      the above FPS field is populated by the FPS, you can then change it.
-      By inspecting file properties you can usually find out what the framerate
-      in your movie file is.
-    </p>
+      <p>
+        The first line of the file is reserved for telling the media player how
+        many frames per second, FPS, is displayed in the video. Sometimes, like
+        in this case, the number is wrong; <i>Merry Christmas Mr. Lawrence</i> (1983)
+        actually runs at 23.98 frames per second, so when the subtitle is uploaded and
+        the above FPS field is populated by the FPS, you can then change it.
+        By inspecting file properties you can usually find out what the framerate
+        in your movie file is.
+      </p>
 
-    <p>
-      The subsequent lines contain frame timecodes, not hour, minute, second and
-      millisecond codes like SRT files do. The number inside first curly braces
-      is the frame at which the line appears and the second curly braces contain
-      the frame at which the line disappears.
-    </p>
+      <p>
+        The subsequent lines contain frame timecodes, not hour, minute, second and
+        millisecond codes like SRT files do. The number inside first curly braces
+        is the frame at which the line appears and the second curly braces contain
+        the frame at which the line disappears.
+      </p>
 
-    <p>
-      By using this tool you can convert the subtitles, but also shift the
-      subtitles by milliseconds, back or forth (negative or positive number),
-      if the subtitles don't linearly line up with movie content.
-    </p>
-  </aside>
+      <p>
+        By using this tool you can convert the subtitles, but also shift the
+        subtitles by milliseconds, back or forth (negative or positive number),
+        if the subtitles don't linearly line up with movie content.
+      </p>
+    </aside>
+  </div>
 </body>
 
 <footer>
-  
+
 </footer>
 
 </html>
