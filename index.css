@@ -1,11 +1,27 @@
+@keyframes emerge {
+  from {
+    opacity: 0;
+    margin-top: -0.4%;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 a {
   color: black;
   text-decoration: underline;
+  font-size: small;
 }
 
 body {
+  animation: 1.2s emerge;
   padding: 0;
   margin: 1em;
+}
+
+.mainContainer {
   max-width: 450px;
 }
 
@@ -30,8 +46,7 @@ fieldset {
   margin: 2em 0;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 400px;
+  max-width: 100%;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -115,4 +130,11 @@ aside {
 code {
   white-space: pre-line;
   background-color: rgb(255, 243, 239);
+}
+
+footer {
+  bottom: 0;
+  position: fixed;
+  margin-bottom: 1em;
+  opacity: 0.5;
 }
