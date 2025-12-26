@@ -1,7 +1,8 @@
 const acceptedFileExtensions = ['sub', 'txt'];
 const acceptedFileTypes = ['text/plain'];
-
 const fileInput = document.getElementById('fileInput');
+const messageDiv = document.getElementById('message');
+
 fileInput.addEventListener('change', function () {
   const file = fileInput.files[0];
   if (file) {
@@ -10,11 +11,11 @@ fileInput.addEventListener('change', function () {
         if (result === 'text') {
           displayFileName();
         } else {
-          alert('Not an actual SUB/TXT file.');
+          setMessage('Not an actual SUB/TXT file.');
         }
       })
       .catch((error) => {
-        alert('File read error:', error);
+        setMessage(`Read error: ${error}`);
       });
   }
 });
@@ -51,16 +52,15 @@ function convert() {
   const fileInput = document.getElementById('fileInput');
   const shiftInput = document.getElementById('shiftInput');
   const fpsInput = document.getElementById('fpsInput');
-  const downloadMessage = document.getElementById('downloadMessage');
   const fileExtension = fileInput.files[0].name.split('.').pop().toLowerCase();
 
   if (!acceptedFileExtensions.includes(fileExtension)) {
-    alert('Please select a valid .sub file');
+    setMessage('Please select a valid .sub file.');
     return;
   }
 
   if (!fileInput.files.length) {
-    alert('The file contains no lines to process.');
+    setMessage('The file contains no lines to process.');
     return;
   }
 
@@ -73,7 +73,7 @@ function convert() {
     const lines = reader.result.split(/\r?\n/);
 
     if (lines.length < 2 || lines[0].trim() === '') {
-      alert('There are no lines in this file whatsoever.');
+      setMessage('There are no lines in this file whatsoever.');
       return;
     }
 
@@ -82,20 +82,20 @@ function convert() {
 
     // Validate shift value
     if (shift < -30000000 || shift > 30000000) {
-      alert(`${shift} seems excessive.`);
+      setMessage(`${shift} seems excessive.`);
       return;
     }
 
     // Validate FPS value
     if (userFps < 1 || userFps > 1000) {
-      alert('Nonsensical frame rate.');
+      setMessage('Nonsensical frame rate.');
       return;
     }
 
     // Use user-provided fps or extract it from first line
     const fps = userFps || extractFpsFromLine(lines[0]);
     if (!fps) {
-      alert('Framerate not found or invalid.');
+      setMessage('Framerate not found or invalid.');
       return;
     }
 
@@ -129,14 +129,14 @@ function convert() {
     downloadFile(srtOutput, file.name.replace(/\.sub$/i, '.srt'));
 
     // Show success message
-    downloadMessage.style.display = 'inline';
+    messageDiv.style.display = 'inline';
     setTimeout(function () {
-      downloadMessage.style.display = 'none';
+      messageDiv.style.display = 'none';
     }, 5000);
   };
 
   reader.onerror = function () {
-    alert('There was an error reading the file.');
+    setMessage('There was an error reading the file.');
   };
 
   // Read the file as text
@@ -226,4 +226,11 @@ function downloadFile(content, filename) {
   a.click();
 
   URL.revokeObjectURL(url);
+}
+
+function setMessage(text) {
+  messageDiv.textContent = text;
+  setTimeout(() => {
+    messageDiv.textContent = '';
+  }, 5000);
 }
