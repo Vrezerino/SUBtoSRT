@@ -2,6 +2,7 @@ const acceptedFileExtensions = ['sub', 'txt'];
 const acceptedFileTypes = ['text/plain'];
 const fileInput = document.getElementById('fileInput');
 const messageDiv = document.getElementById('message');
+//const countSpan = document.getElementById('downloadCount');
 
 fileInput.addEventListener('change', function () {
   const file = fileInput.files[0];
@@ -48,7 +49,7 @@ function displayFileName() {
   }
 }
 
-function convert() {
+async function convert() {
   const fileInput = document.getElementById('fileInput');
   const shiftInput = document.getElementById('shiftInput');
   const fpsInput = document.getElementById('fpsInput');
@@ -69,7 +70,7 @@ function convert() {
   const reader = new FileReader();
 
   // Read the file when it's fully loaded
-  reader.onload = function () {
+  reader.onload = async function () {
     const lines = reader.result.split(/\r?\n/);
 
     if (lines.length < 2 || lines[0].trim() === '') {
@@ -127,19 +128,13 @@ function convert() {
 
     // Trigger download of newly-created srt file
     downloadFile(srtOutput, file.name.replace(/\.sub$/i, '.srt'));
-
-    // Show success message
-    messageDiv.style.display = 'inline';
-    setTimeout(function () {
-      messageDiv.style.display = 'none';
-    }, 5000);
+    setMessage('Converted and downloaded!');
   };
 
   reader.onerror = function () {
     setMessage('There was an error reading the file.');
   };
 
-  // Read the file as text
   reader.readAsText(file);
 }
 
