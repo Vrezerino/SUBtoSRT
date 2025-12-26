@@ -38,9 +38,15 @@ input,
   font-family: Courier, monospace;
 }
 
+.fileNameContainer {
+  position: relative;
+}
+
 span#fileName {
+  position: absolute;
+  top: 0;
+  left: 0;
   font-size: 14px;
-  padding-top: 1em;
 }
 
 fieldset {
@@ -109,7 +115,7 @@ input[type='file'] {
   position: relative;
 }
 
-#message {
+span#message {
   position: absolute;
   top: 0;
   left: 0;
